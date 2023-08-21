@@ -1,6 +1,6 @@
-# ESLint configuration of Team FareAmt
+# ESLint configuration
 
-This package includes the shareable [ESLint](https://eslint.org) configuration that Team FareAmt uses in their
+This package includes the shareable [ESLint](https://eslint.org) configuration that our team uses in their
 projects.
 
 It was inspired by https://github.com/airbnb/javascript and https://github.com/facebook/create-react-app but less
@@ -8,20 +8,12 @@ opinionated.
 
 ## Installation
 
-## Gitlab Registry
+## Github Registry
 
-1. Create your
-   own [Personal Access Token](https://git.flix.tech/-/profile/personal_access_tokens?scopes=api&name=Gitlab%20NPM%20Registry)
-   and copy it into buffer. We will need it later. Expiration date can be cleared unless you want to renew it every
-   month.
-2. Create an .npmrc file with the following configuration and replace <your_token> withe one you've created
+1. Create an .npmrc file with the following configuration
 
 ```
-always-auth=true
-
-@pricing:registry=https://git.flix.tech/api/v4/packages/npm/
-//git.flix.tech/api/v4/packages/npm/:_authToken=<your_token>
-//git.flix.tech/api/v4/projects/:_authToken=<your_token>
+@taylor-recruit:registry=https://npm.pkg.github.com
 ```
 
 NOTE: You can also create it in your home directory to enable it globally for all projects.
@@ -31,7 +23,7 @@ NOTE: You can also create it in your home directory to enable it globally for al
 1. Install this package, ESLint and the necessary dependencies
 
 ```sh
-yarn add -D @pricing/eslint-config-fareamt @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
+yarn add -D @taylor-recruit/eslint-config @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
             eslint@^8.0.0 eslint-plugin-jsx-a11y@^6.0.0 eslint-plugin-react@^7.0.0 eslint-plugin-react-hooks@^4.0.0
 ```
 
@@ -45,23 +37,23 @@ yarn add -D typescript@^5 @typescript-eslint/eslint-plugin@^6 @typescript-eslint
 
 ```json
 {
-  "extends": ["@pricing/fareamt"]
+  "extends": ["@taylor-recruit/eslint-config"]
 }
 ```
 
-3. You can override the settings from `@pricing/fareamt` by editing the `.eslintrc` file. Learn more
+3. You can override the settings from `@taylor-recruit/eslint-config` by editing the `.eslintrc` file. Learn more
    about [configuring ESLint](http://eslint.org/docs/user-guide/configuring) on the ESLint website.
 
 ```json
 {
-  "extends": ["@pricing/fareamt"],
+  "extends": ["@taylor-recruit/eslint-config"],
   "rules": {
     "some-annoying-rule": "off"
   }
 }
 ```
 
-4. If you are using the new JSX transform from React 17, add "@pricing/fareamt/jsx-runtime" to "extends" to disable
+4. If you are using the new JSX transform from React 17, add "@taylor-recruit/eslint-config/jsx-runtime" to "extends" to disable
    the relevant rules.
 
 5. Add a script to you package.json to check your project with Eslint.
@@ -81,7 +73,7 @@ You can also enable all recommended rules for your React App with only one confi
 
 ```json
 {
-  "extends": ["@pricing/fareamt/react-recommended"]
+  "extends": ["@taylor-recruit/eslint-config/react-recommended"]
 }
 ```
 
@@ -92,7 +84,7 @@ You can also enable all recommended rules for your React App with only one confi
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D @pricing/eslint-config-fareamt eslint@^8.0.0
+yarn add -D @taylor-recruit/eslint-config eslint@^8.0.0
 ```
 
 for typescript projects install additional dependencies
@@ -105,16 +97,16 @@ yarn add -D typescript@^4.0.0 @typescript-eslint/eslint-plugin@^5.0.0 @typescrip
 
 ```json
 {
-  "extends": ["@pricing/fareamt/node"]
+  "extends": ["@taylor-recruit/eslint-config/node"]
 }
 ```
 
-3. You can override the settings from `@pricing/fareamt` by editing the `.eslintrc` file. Learn more
+3. You can override the settings from `@taylor-recruit/eslint-config` by editing the `.eslintrc` file. Learn more
    about [configuring ESLint](http://eslint.org/docs/user-guide/configuring) on the ESLint website.
 
 ```json
 {
-  "extends": ["@pricing/fareamt/node"],
+  "extends": ["@taylor-recruit/eslint-config/node"],
   "rules": {
     "some-annoying-rule": "off"
   }
@@ -127,7 +119,7 @@ You can also enable all recommended rules for your NodeJS App with only one conf
 
 ```json
 {
-  "extends": ["@pricing/fareamt/node-recommended"]
+  "extends": ["@taylor-recruit/eslint-config/node-recommended"]
 }
 ```
 
@@ -152,7 +144,7 @@ yarn add -D jest eslint-plugin-jest
 
 ```json
 {
-  "extends": ["@pricing/fareamt", "@pricing/fareamt/jest"]
+  "extends": ["@taylor-recruit/eslint-config", "@taylor-recruit/eslint-config/jest"]
 }
 ```
 
@@ -167,7 +159,11 @@ and enable additional rules
 
 ```json
 {
-  "extends": ["@pricing/fareamt", "@pricing/fareamt/jest", "@pricing/fareamt/testing-library"]
+  "extends": [
+    "@taylor-recruit/eslint-config",
+    "@taylor-recruit/eslint-config/jest",
+    "@taylor-recruit/eslint-config/testing-library"
+  ]
 }
 ```
 
@@ -186,7 +182,7 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 
 ```json
 {
-  "extends": ["@pricing/fareamt", "@pricing/fareamt/prettier"]
+  "extends": ["@taylor-recruit/eslint-config", "@taylor-recruit/eslint-config/prettier"]
 }
 ```
 
@@ -200,31 +196,7 @@ this content:
 
 ```json
 {
-  "extends": ["@pricing/fareamt", "plugin:jsx-a11y/recommended"],
+  "extends": ["@taylor-recruit/eslint-config", "plugin:jsx-a11y/recommended"],
   "plugins": ["jsx-a11y"]
 }
-```
-
-## Troubleshooting
-
-### Error running Yarn with the Package Registry for npm registry
-
-If you are using Yarn with the npm registry, you may get an error message like:
-
-```bash
-  yarn add -D @pricing/eslint-config-fareamt
-
-  yarn add v1.22.19
-  [1/4] 🔍  Resolving packages...
-  [2/4] 🚚  Fetching packages...
-  error An unexpected error occurred: "https://git.flix.tech/api/v4/projects/7362/packages/npm/@pricing/eslint-config-fareamt/-/@pricing/eslint-config-fareamt-x.x.x.tgz: Request failed \"404 Not Found\"".
-  info If you think this is a bug, please open a bug report with the information provided in "<your project>/yarn-error.log".
-  info Visit https://yarnpkg.com/en/docs/cli/add for documentation about this command.
-```
-
-In this case, try adding this to your .npmrc file (and replace <your_token> with your personal access token or deploy
-token):
-
-```bash
-//git.flix.tech/api/v4/projects/:_authToken=<your_token>
 ```
