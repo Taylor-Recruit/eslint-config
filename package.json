@@ -1,12 +1,15 @@
 {
   "name": "@taylor-recruit/eslint-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ESLint configuration used by Taylor Recruit team",
   "homepage": "https://github.com/Taylor-Recruit/infra-eslint-config",
   "author": "Noushad <to.noushadpp@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git@github.com:Taylor-Recruit/infra-eslint-config.git"
+  },
+  "publishConfig": {
+    "@taylor-recruit:registry": "https://npm.pkg.github.com"
   },
   "license": "MIT",
   "engines": {
@@ -26,7 +29,6 @@
     "format:fix": "yarn prettier --write .",
     "prepare": "husky install",
     "prepublishOnly": "pinst --disable",
-    "release": "standard-version && git push --follow-tags && npm publish",
     "postpublish": "pinst --enable"
   },
   "dependencies": {
