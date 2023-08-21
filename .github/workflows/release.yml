@@ -28,8 +28,15 @@ jobs:
       - name: Install dependencies
         run: yarn install --force
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
+        run: yarn audit signatures
+      - name: Prepare
+        uses: danielr1996/envsubst-action@1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          input: .npmrc.tpl
+          output: .npmrc
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: yarn semantic-release
