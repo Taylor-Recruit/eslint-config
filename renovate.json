@@ -1,0 +1,45 @@
+{
+  "extends": [
+    ":automergePatch",
+    ":automergePr",
+    ":automergeRequireAllStatusChecks",
+    ":dependencyDashboard",
+    ":disablePrControls",
+    ":disableRateLimiting",
+    ":enableVulnerabilityAlerts",
+    ":prConcurrentLimit10",
+    ":prImmediately",
+    ":rebaseStalePrs",
+    ":renovatePrefix",
+    ":separateMultipleMajorReleases",
+    ":disablePeerDependencies"
+  ],
+  "platformAutomerge": true,
+  "stabilityDays": 3,
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "extends": "monorepo:babel",
+      "groupName": "babel"
+    },
+    {
+      "groupName": "all patch dependencies",
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["patch"],
+      "matchDepTypes": ["dependencies", "devDependencies"],
+      "stabilityDays": 0
+    },
+    {
+      "description": "Ignore engines field in package.json",
+      "enabled": false,
+      "matchPackageNames": ["node"],
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["engines"]
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true
+    }
+  ],
+  "ignoreDeps": ["typescript"]
+}

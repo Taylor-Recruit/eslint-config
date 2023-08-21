@@ -1,0 +1,43 @@
+install:
+  stage: vendors
+  script:
+    - make install-ci
+  cache:
+    - key:
+        files: ['yarn.lock']
+      paths: ['node_modules']
+    - key: yarn-$CI_JOB_IMAGE
+      paths: ['.yarn-cache']
+  artifacts:
+    paths: ['node_modules']
+    expire_in: 20m
+
+lint:
+  stage: test
+  script:
+    - make lint
+  needs: ['install']
+  dependencies: ['install']
+
+publish:
+  stage: publish
+  variables:
+    NPM_TOKEN: $CI_JOB_TOKEN
+    GITLAB_URL: $CI_SERVER_URL
+    GITLAB_TOKEN: $GITLAB_PROJECT_ACCESS_TOKEN
+  script:
+    - make setup-yarnrc
+    - make setup-npmrc
+    - yarn semantic-release
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  needs:
+    - install
+    - lint
+  dependencies:
+    - install
+
+update dependencies:
+  needs:
+    - job: publish
+      artifacts: false

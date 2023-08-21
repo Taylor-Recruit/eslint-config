@@ -1,0 +1,18 @@
+default:
+  image: ${GITLAB_SECRET_FAREAMT_DCR_HUB}/node:18
+
+variables:
+  FF_USE_FASTZIP: 'true'
+  ARTIFACT_COMPRESSION_LEVEL: 'fast'
+  CACHE_COMPRESSION_LEVEL: 'fast'
+
+include:
+  - project: pricing/amt/infrastructure-automation/renovate-runner
+    ref: master
+    file: '/templates/trigger.yml'
+  - local: cicd/yarn/gitlab-ci.yml
+
+stages:
+  - vendors
+  - test
+  - publish
