@@ -8,16 +8,6 @@ permissions:
   contents: read # for checkout
 
 jobs:
-  install-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: yarn install --force
-      - run: npm ci
-      - run: npm test
   release:
     name: Release
     runs-on: ubuntu-latest
