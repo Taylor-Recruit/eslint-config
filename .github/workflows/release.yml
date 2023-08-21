@@ -24,8 +24,7 @@ jobs:
         with:
           node-version: '18'
       - run: yarn install --force
-      - name: Release
-        env:
+      - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn semantic-release
-      - run: yarn publish
