@@ -23,8 +23,8 @@ NOTE: You can also create it in your home directory to enable it globally for al
 1. Install this package, ESLint and the necessary dependencies
 
 ```sh
-yarn add -D @taylor-recruit/eslint-config @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 \
-            eslint@^8.0.0 eslint-plugin-jsx-a11y@^6.0.0 eslint-plugin-react@^7.0.0 eslint-plugin-react-hooks@^4.0.0
+yarn add -D @taylor-recruit/eslint-config @babel/core@^7.0.0 @babel/eslint-parser@^7.0.0 @babel/preset-react@^7.0.0 eslint@^8.0.0 eslint-plugin-react@^7.0.0 eslint-plugin-react-hooks@^4.0.0 \
+typescript@^5 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6
 ```
 
 for typescript projects install additional dependencies
@@ -84,7 +84,11 @@ You can also enable all recommended rules for your React App with only one confi
 1. Install this package, ESLint and the necessary plugins
 
 ```sh
-yarn add -D @taylor-recruit/eslint-config eslint@^8.0.0
+yarn add -D @taylor-recruit/eslint-config \
+  eslint@^8.0.0 \
+  typescript@^5 \
+  @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6
+
 ```
 
 for typescript projects install additional dependencies
@@ -119,7 +123,7 @@ You can also enable all recommended rules for your NodeJS App with only one conf
 
 ```json
 {
-  "extends": ["@taylor-recruit/eslint-config/node-recommended"]
+  "extends": ["@taylor-recruit/eslint-config/node-recommended", "@taylor-recruit/eslint-config/jest"]
 }
 ```
 
@@ -137,7 +141,7 @@ on [`eslint-plugin-jest`](https://github.com/jest-community/eslint-plugin-jest))
 1. Install the ESLint plugin for Jest and Testing Library (if you don't already have them installed).
 
 ```sh
-yarn add -D jest eslint-plugin-jest
+yarn add -D jest eslint-plugin-jest eslint-plugin-jest-formatting
 ```
 
 2. Enable these rules by adding the Jest config to the `extends` array in your ESLint config.
@@ -148,8 +152,30 @@ yarn add -D jest eslint-plugin-jest
 }
 ```
 
-If you want to extend it with [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)) rules,
-then add it also into your app.
+### Vitest
+
+In case you are using ViteJS as app builder, it is recommended to use Vitest instead of Jest in your app.
+This config also ships with optional Vitest rules for ESLint (based
+on [`eslint-plugin-vitest`](https://github.com/veritem/eslint-plugin-vitest))
+
+1. Install the ESLint plugin for Vitest
+
+```sh
+yarn add -D jest eslint-plugin-vites eslint-plugin-jest-formatting
+```
+
+2. Enable these rules by adding the Jest config to the `extends` array in your ESLint config.
+
+```json
+{
+  "extends": ["@pricing/fareamt", "@pricing/fareamt/vitest"]
+}
+```
+
+### Testing Library
+
+You can also charge your ESLint with additional power
+of [`eslint-plugin-testing-library`](https://github.com/testing-library/eslint-plugin-testing-library)) rules.
 
 ```sh
 yarn add -D  eslint-plugin-testing-library
@@ -161,7 +187,7 @@ and enable additional rules
 {
   "extends": [
     "@taylor-recruit/eslint-config",
-    "@taylor-recruit/eslint-config/jest",
+    "@taylor-recruit/eslint-config/vitest",
     "@taylor-recruit/eslint-config/testing-library"
   ]
 }
@@ -196,7 +222,6 @@ this content:
 
 ```json
 {
-  "extends": ["@taylor-recruit/eslint-config", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"]
+  "extends": ["@taylor-recruit/eslint-config", "@taylor-recruit/eslint-config/a11y"]
 }
 ```

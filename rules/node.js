@@ -116,6 +116,7 @@ module.exports = {
   // https://eslint.org/docs/rules/no-useless-concat
   'no-useless-concat': 'warn',
 
+  'no-useless-return': 'warn',
   'no-useless-constructor': 'warn',
   'no-useless-escape': 'warn',
   'no-useless-rename': [
@@ -204,7 +205,9 @@ module.exports = {
 
   'arrow-body-style': ['warn', 'as-needed'],
 
-  'arrow-parens': ['warn', 'as-needed', { requireForBlockBody: true }],
+  // Require parentheses around arrow function arguments
+  // https://eslint.org/docs/latest/rules/arrow-parens
+  'arrow-parens': 'warn',
 
   quotes: ['warn', 'single'],
 
@@ -281,6 +284,8 @@ module.exports = {
     { blankLine: 'always', prev: 'import', next: '*' },
     { blankLine: 'always', prev: '*', next: 'export' },
     { blankLine: 'any', prev: ['import', 'export'], next: ['import', 'export'] },
+
+    { blankLine: 'always', prev: '*', next: 'function' },
   ],
 
   // https://github.com/lydell/eslint-plugin-simple-import-sort
