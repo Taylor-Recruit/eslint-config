@@ -289,21 +289,27 @@ module.exports = {
   ],
 
   // https://github.com/lydell/eslint-plugin-simple-import-sort
-  'simple-import-sort/imports': [
-    'warn',
+  "simple-import-sort/imports": [
+    "warn",
     {
-      groups: [
+      "groups": [
         // Packages. (Things that start with a letter (or digit or underscore), or `@` followed by a letter.)
-        ['^@?\\w'],
+        [ "^@?\\w"],
+        // Internal packages.
+        ["^api/.*|$"],
+        ["^application/.*|$"],
+        ["^domain/.*|$"],
+        ["^shared-kernel/.*|$"],
+        ["^infrastructure/.*|$"],
         // Parent imports. Put `..` last.
-        ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+        ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
         // Other relative imports. Put same-folder imports and `.` last.
-        ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+        ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
         // Style imports.
-        ['^.+\\.s?css$'],
+        ["^.+\\.s?css$"],
         // Side effect imports. eg: import './style.css'
-        ['^\\u0000'],
-      ],
+        ["^\\u0000"]
+      ]
     },
   ],
 
