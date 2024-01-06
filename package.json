@@ -2,11 +2,11 @@
   "name": "@taylor-recruit/eslint-config",
   "version": "0.0.2",
   "description": "ESLint configuration used by Taylor Recruit team",
-  "homepage": "https://github.com/Taylor-Recruit/infra-eslint-config",
+  "homepage": "https://github.com/Taylor-Recruit/eslint-config",
   "author": "Noushad <to.noushadpp@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Taylor-Recruit/infra-eslint-config.git"
+    "url": "git@github.com:Taylor-Recruit/eslint-config.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
