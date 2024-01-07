@@ -54,7 +54,7 @@ module.exports = {
     'warn',
     {
       selector: 'default',
-      format: ['camelCase', 'UPPER_CASE'],
+      format: ['PascalCase', 'camelCase', 'UPPER_CASE'],
       leadingUnderscore: 'allowSingleOrDouble',
     },
     {
